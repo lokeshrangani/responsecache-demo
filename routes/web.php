@@ -34,6 +34,17 @@ Route::middleware('responsecache')->group(function () {
     });
 });
 
+// When using the route middleware you can specify the number of seconds these routes should be cached:
+Route::get('/fresh-data', function () {
+    $timestamp = now()->toDateTimeString();
+    Log::info("Refreshing response at: $timestamp");
+    return response()->json([
+        'message' => 'Hello, this is a cached response!',
+        'timestamp' => $timestamp
+    ]);
+})->middleware('responsecache:60');
+
+
 Route::get('/dynamic-data', function () {
     $timestamp = now()->toDateTimeString();
     Log::info("No cache for this response at: $timestamp");

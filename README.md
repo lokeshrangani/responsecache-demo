@@ -90,6 +90,15 @@ Route::middleware('responsecache')->group(function () {
     });
 });
 
+Route::get('/fresh-data', function () {
+    $timestamp = now()->toDateTimeString();
+    Log::info("Refreshing response at: $timestamp");
+    return response()->json([
+        'message' => 'Hello, this is a cached response!',
+        'timestamp' => $timestamp
+    ]);
+})->middleware('responsecache:60');
+
 Route::get('/dynamic-data', function () {
     $timestamp = now()->toDateTimeString();
     Log::info("No cache for this response at: $timestamp");
@@ -102,6 +111,7 @@ Route::get('/dynamic-data', function () {
 
 ### Explanation
 
+-   `/fresh-data` use the `responsecache:seconds` middleware, demonstrating how responses are refreshed after defined seconds.
 -   `/demo`, `/greet/{name}`, and `/products` use the `responsecache` middleware, demonstrating how responses are cached.
 -   `/dynamic-data` bypasses caching using the `doNotCacheResponse` middleware.
 
