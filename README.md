@@ -5,7 +5,7 @@ This demo project demonstrates the usage of the `spatie/laravel-responsecache` p
 ## Prerequisites
 
 -   PHP 8.0 or higher
--   Laravel 10.x
+-   Laravel 11.x
 -   Composer
 
 ## Installation
@@ -14,7 +14,7 @@ This demo project demonstrates the usage of the `spatie/laravel-responsecache` p
 
     ```bash
     git clone <repository-url>
-    cd response-cache-demo
+    cd responsecache-demo
     ```
 
 2. Install dependencies:
